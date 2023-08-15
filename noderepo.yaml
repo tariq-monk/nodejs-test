@@ -1,0 +1,26 @@
+namespace: noderepo
+noderepo:
+  defines: runnable
+  metadata:
+    name: noderepo
+    description: >-
+      This is a Node.js app using express, jade, cookie-parser and morgan
+      modules.
+    icon: https://emojiapi.dev/api/v1/robot.svg
+  containers:
+    noderepo:
+      build: .
+  services:
+    app-port:
+      container: noderepo
+      port: <- $port
+      host-port: <- $port
+      publish: false
+      protocol: TCP
+      description: This is the default port where the app is exposed
+  variables:
+    port:
+      env: PORT
+      type: int
+      description: The port on which the app runs
+      value: '3000'
